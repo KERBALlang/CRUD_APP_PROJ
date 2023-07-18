@@ -1,5 +1,7 @@
 // Update with your config settings.
 
+const postgres = require("postgres");
+
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -8,6 +10,13 @@ module.exports = {
   development: {
     client: 'pg',
     connection: 'postgres://postgres:docker@localhost/postgres'
+    // connection:{
+    //   host: '127.0.0.1',
+    //   password: 'docker',
+    //   user: 'postgres',
+    //   port: 5432,
+    //   database: 'postgres'
+    // }
   },
 
   staging: {
@@ -15,7 +24,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'db',
+      database: 'postgres',
       user:     'postgres',
       password: 'docker'
     },
@@ -31,7 +40,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'db',
+      database: 'postgres',
       user:     'postgres',
       password: 'docker'
     },

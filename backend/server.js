@@ -1,7 +1,7 @@
 // imports and requirements //
 const express = require('express');
 const fs = require('fs');
-const knex = require('knex');
+const knex = require('knex')(require('../backend/knexfile')['development']);
 // global variables //
 const app = express()
 const port = 3001
@@ -11,8 +11,18 @@ const port = 3001
 app.get('/',(request, response)=>{
     response.send("Hello World")
 })
-app.get('')
-
+app.get('/users',(request, response)=>{
+    knex('user').select('*').from('users')
+        .then((user)=>{
+            response.send(user);
+        })
+})
+app.get('/items',(request, response)=>{
+    knex.select('*').from('items')
+        .then((item)=>{
+            response.send(item);
+        })
+})
 
 
 
