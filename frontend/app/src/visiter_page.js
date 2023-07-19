@@ -1,7 +1,7 @@
 import './landing_page.css';
 import React, { useEffect, useState} from 'react';
 
-const landing_page =()=>{
+const visiter_page =()=>{
     const [user_name, setusername]=useState();
     const [password, set_password]=useState();
 
@@ -33,4 +33,4 @@ const landing_page =()=>{
     );
 }
 
-export default landing_page;
+export default visiter_page;
