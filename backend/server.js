@@ -2,6 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const knex = require('knex')(require('../backend/knexfile')['development']);
+const cors = require('cors');
 // global variables //
 const app = express()
 const port = 3001
@@ -9,6 +10,7 @@ const port = 3001
 
 // main function calls //
 app.use(express.json());
+app.use(cors())
 
 
 app.get('/',(request, response)=>{

@@ -9,10 +9,10 @@ const create_account_page=()=>{
 
     const handler = (element)=>{
         element.preventDefault();
-        console.log(first_name);
-        console.log(last_name);
-        console.log(user_name);
-        console.log(password);
+        // console.log(first_name);
+        // console.log(last_name);
+        // console.log(user_name);
+        // console.log(password);
     }
 
     return(

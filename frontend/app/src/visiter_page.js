@@ -2,8 +2,7 @@ import './landing_page.css';
 import React, { useEffect, useState} from 'react';
 
 const visiter_page =()=>{
-    const [user_name, setusername]=useState();
-    const [password, set_password]=useState();
+    const [items_list, set_itemslist]=useState();
 
     const handler = (element)=>{
         element.preventDefault();
@@ -18,13 +17,7 @@ const visiter_page =()=>{
         
     </header>
     <main>
-        <form onSubmit={handler}>
-            <label for='user name'>User Name</label>
-            <input type="text" value={user_name} onChange={(element)=>{setusername(element.target.value)}} placeholder='Input your User Name'></input>
-            <label for='password'>password</label>   
-            <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>              
-            <button>Login</button>
-        </form>
+        <p>MY CONTENT</p>
     </main>
     <footer>
         <h2>Inventory Manager</h2>
