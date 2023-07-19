@@ -1,0 +1,118 @@
+/*Main HTML Properties*/
+body{
+    background-color: black;
+    border-spacing: 5px;
+    border-color: white;
+    padding: 5px;
+}
+header{
+    background-color: blue;
+}
+nav{
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: darkslategray;
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0px;
+}
+main{
+    flex-wrap: wrap;
+    background-color: bisque; 
+}
+section{
+    flex-wrap: wrap;
+}
+
+article{
+    flex-wrap: wrap;
+    background-color: white;
+    color: black;
+    font-size: auto;
+    font-family: 'Times New Roman', Times, serif;
+    border: 10px black; 
+    padding: 1%;
+    justify-content: center;
+}
+/*Main html sub properties and headers*/
+
+img{
+    display:grid;
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 5px;
+    width: 95%;
+    height: 95%;
+    background-color: blueviolet;
+
+}
+footer{
+    background-color: blue;
+}
+/*Public Varibles*/
+.headers{
+    /*this is for h1-h6 uniform settings*/
+    background-color: blueviolet;
+    color: black;
+    font-style: bold, italic;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+.buttonlink{
+    display: flex;
+    float: left;
+    align-self: center;
+    background-color: darkslategray;
+    padding: 0 px;
+    border: 0px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+}
+
+.formsearch{
+    display:flex;
+    flex-direction: row;
+    align-self: center;
+    justify-self: flex-end;
+    background-color: darkslategray;
+    padding: 0 px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+ 
+}
+.formlogin{
+    display:flex;
+    flex-direction: column;
+    padding: 5 px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    border: 10;
+    border-radius: 5px;
+    border-style: solid;
+}
+.button{
+    /* grid-area: repeat(auto-fit, minmax(20px, 1fr) ; */
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    grid-gap: 40px;
+    background-color: red;
+    padding: 5 px;
+    border: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+  
+}
+.altsection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around ;
+    padding: 10px;
+}
+.aalign{
+    display: flex;
+    align-self: center;
+}
+/*Private Varibles*/

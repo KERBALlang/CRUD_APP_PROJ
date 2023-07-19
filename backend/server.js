@@ -32,12 +32,12 @@ app.post('/users',(request, response)=>{
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
 
-
-
-
 // app.put(('/users', (request, response)=>{
 //     knex.('users').where('id', request.params.id).update({})
 // }))
+// app.delete('/users',(request, reponse)=>{
+// knex.('users')
+// })
 
 
 
