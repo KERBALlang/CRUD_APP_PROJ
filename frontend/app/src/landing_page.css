@@ -18,7 +18,7 @@ nav{
 }
 main{
     flex-wrap: wrap;
-    background-color: bisque; 
+    background-color: black; 
 }
 section{
     flex-wrap: wrap;
@@ -45,6 +45,12 @@ img{
     height: 95%;
     background-color: blueviolet;
 
+}
+label{
+    color: white;
+}
+li{
+    background-color: bisque;
 }
 footer{
     background-color: blue;

@@ -5,7 +5,7 @@ const landing_page =()=>{
     const [user_name, set_username]=useState('');
     const [password, set_password]=useState('');
     const [state_update, set_state_update]=useState(0);
-    const [user_fetch, set_user_fetch]=useState(0);
+    const [user_fetch, set_user_fetch]=useState([]);
     // console.log(user_name);
     // console.log(password);
     // console.log(state_update);
@@ -37,6 +37,7 @@ const landing_page =()=>{
         console.log('my state is FALSE:', state_update)
         }
     },[state_update])
+    
     useEffect(()=>{
         for (let itteration = 0; itteration < user_fetch.length; itteration++){
             console.log(user_fetch[itteration].id)
@@ -46,6 +47,7 @@ const landing_page =()=>{
                 set_username(''),
                 set_password(''),
                 set_state_update(0)
+                
                 )
             }
         }
@@ -65,9 +67,9 @@ const landing_page =()=>{
     </header>
     <main>
         <form onSubmit={handler}>
-            <label for='user_name'>User Name</label>
+            <label for='user_name'>User Name: </label>
             <input type="text" value={user_name} onChange={(element)=>{set_username(element.target.value)}} placeholder='Input your User Name'></input>
-            <label for='password'>password</label>   
+            <label for='password'>password: </label>   
             <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>              
             <button>Login</button>
         </form>

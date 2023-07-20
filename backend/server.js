@@ -26,9 +26,10 @@ app.get('/users',(request, response)=>{
 app.post('/users',(request, response)=>{
     // console.log('TEST: ', request.body)
     const testData = request.body;
-    console.log(testData);
+    console.log("TESTDATA",testData)
     knex('users').insert(testData)
         .then(()=>{
+            console.log("KNEXPROMISE", testData)
             response.status(200).json({testData});
     })
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
