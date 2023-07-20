@@ -1,6 +1,6 @@
 import './landing_page.css';
 import React, { useEffect, useState} from 'react';
-
+import {Link, useNavigate} from 'react-router-dom';
 const landing_page =(props)=>{
     const [user_name, set_username]=useState('');
     const [password, set_password]=useState('');
@@ -9,7 +9,7 @@ const landing_page =(props)=>{
     // console.log(user_name);
     // console.log(password);
     // console.log(state_update);
-
+    const navigate = useNavigate()
     const handler = (element)=>{
         element.preventDefault()
         // console.log(user_name);
@@ -17,6 +17,11 @@ const landing_page =(props)=>{
         // console.log(state_update);
         set_state_update(1)
         // console.log(state_update);
+    }
+    const [history, set_history]= useState('')
+    const route_change = ()=>{
+        let path = 'http://localhost:3000/user';
+        set_history(path)
     }
 
     useEffect(()=>{
@@ -62,25 +67,7 @@ const landing_page =(props)=>{
         console.log('STATE CONTAINS: ', user_fetch)
     },[user_fetch])
 
-    const PAGE_LINK = (()=>{
-       
-        if(user_fetch.length === 1){
-            let page_link=`http://localhost:3000/user/${user_fetch.id}${user_fetch.user_name}${user_fetch.password}`
-            console.log(page_link)
-            return (
-                <>
-                    <a>NEWPAGE</a>
-                </>
-            )
-        }
-        else{
-            return(
-            <>
-            <a href= 'http://localhost:3000/user/id'>CLICKME</a>
-            </>
-            )
-        }
-    })
+
 
 
     return(
@@ -94,10 +81,12 @@ const landing_page =(props)=>{
             <label for='user_name'>User Name: </label>
             <input type="text" value={user_name} onChange={(element)=>{set_username(element.target.value)}} placeholder='Input your User Name'></input>
             <label for='password'>password: </label>   
-            <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>              
-            <button>Login</button>
+            <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>
+            {/* <Link to='/user'>             */}
+                <button>Login</button>
+                {/* <button onClick={()=>{navigate('./user')}} >User</button> */}
+            {/* </Link>   */}
         </form>
-        <PAGE_LINK />
     </main>
     <footer>
         <h2>Inventory Manager</h2>

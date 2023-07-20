@@ -8,19 +8,16 @@ const user_page =(props)=>{
     const [new_item_name, set_new_item_name] = useState('');
     const [new_item_flavor_text, set_new_flavor_text] = useState('');
     const [new_item_quantity, set_new_item_quantity] = useState(0);
-    const [user_object, set_user_object] = useState({});
+    const [user_object, set_user_object] = useState({
+        id: -1
+    });
     const handler = (element)=>{
         element.preventDefault();
         // console.log(user_name);
         // console.log(password);
-        if(user_object !== {}){
+        if(user_object.id !== -1){
             if(new_item_name !== '' && new_item_flavor_text !== '' && new_item_quantity !==0){
-                if(state_update===1){
-                    set_state_update(0)
-                }
-                else{
                     set_state_update(1)
-                }
             }
         }
     }
@@ -31,8 +28,9 @@ useEffect(()=>{
 
 useEffect(()=>{
     console.log('Me Lord has no data:', state_update)    
-    console.log(items_list)
-    if(props.id!=={}){
+    console.log('ITEMS LIST',items_list)
+    console.log('props passed', props.id)
+    if(props.id.id !== -1){
         if(new_item_name !== '' && new_item_flavor_text !== '' && new_item_quantity !==0){
             const post_body = {user_id: user_object.id,item_name: new_item_name, flavor_text: new_item_flavor_text, quantity: new_item_quantity}
             fetch('http://localhost:3001/items',{method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(post_body)})
@@ -40,18 +38,17 @@ useEffect(()=>{
             set_new_flavor_text('')
             set_new_item_quantity(0)
             set_state_update(0)
+        
         }
-
-
-
-
+        else if(state_update === 0){
         fetch(`http://localhost:3001/items`)
         .then(res => res.json())
         .then(data =>{
-            console.log(data)
+            console.log('I FETCHED:',data)
             set_state_update(1)
             set_items_fetch(data)
-        })
+            set_state_update(1)
+        })}
     }
     else{
         console.log('YOU are not an Authorized user:', state_update)    
@@ -59,34 +56,38 @@ useEffect(()=>{
 },[state_update])
 
 useEffect(()=>{
-
-  
     console.log('But what about Second Breakfast?:', state_update)    
     console.log(items_list)
     console.log(props.id)
-    if(props !== {}){
-        console.log('SUCCESSFULL LOGIN')
-        const temp_array =[]
-        for(let itteration= 0;itteration<items_list.length;itteration++){
-            if(props.id.id===items_list[itteration].user_id){
-                temp_array.push(items_list[itteration])
+    if(props.id.id !== -1){
+        if(state_update === 1){
+            if(items_list.length>1){
+            console.log('SUCCESSFULL LOGIN')
+            const temp_array =[]
+            for(let itteration= 0;itteration<items_list.length;itteration++){
+                if(props.id.id===items_list[itteration].user_id){
+                    temp_array.push(items_list[itteration])
+                }
             }
-        }
-        set_user_items(temp_array)
-        set_items_fetch([])
-
-        }
+            set_user_items(temp_array)
+            set_items_fetch([])
+            set_state_update(-1)
+            console.log("USER ITEMS:",user_items)
+            }}
         else{
             console.log('Weve had one yes, but:', state_update)    
-        }
+        }}
     }    
-,[state_update])
+,[state_update, items_list])
 
-
-
+// let AutoRefresh((t)=>{
+//     setTimeout(location.reload(true), t)
+// })
+// AutoRefresh(5000)
 
     return(
-        <>   
+        <>
+ 
         <header>
             <h1>Inventory Manager</h1>
             

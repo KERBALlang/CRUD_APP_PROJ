@@ -51,6 +51,21 @@ app.get('/items',(request, response)=>{
         })
         .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
+app.get('/items/id',(request, response)=>{
+    knex.select('*').from('items')
+        .then((items)=>{
+            // for(let i = 0; i<items.length; i++){
+            //     if(items[i].item_name === request){
+            //         response.send(items[i]);
+            //     }
+            // }
+            response.send(items);
+        })
+        .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+})
+
+
+
 app.post('/items',(request, response)=>{
     // console.log('TEST: ', request.body)
     const testData = request.body;

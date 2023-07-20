@@ -8,7 +8,9 @@ import User_page from './user_page'
 
 function App() {
   const navigate = useNavigate();
-  const [id, set_id] = useState({})
+  const [id, set_id] = useState({
+    id: -1
+  })
 
 
 
