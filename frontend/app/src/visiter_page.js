@@ -30,21 +30,21 @@ useEffect(()=>{
         console.log('TRUE my state is:', state_update)    
     }    
 },[])
-useEffect(()=>{
+// useEffect(()=>{
 
-    if( state_update==1){
-    console.log('But what about Second Breakfast?:', state_update)    
-    console.log(items_list)
-    for(let itteration= 0;itteration<items_list.length;itteration++){
+//     if( state_update==1){
+//     console.log('But what about Second Breakfast?:', state_update)    
+//     console.log(items_list)
+//     for(let itteration= 0;itteration<items_list.length;itteration++){
 
-    }
+//     }
     
 
-    }
-    else{
-        console.log('Weve had one yes, but:', state_update)    
-    }    
-},[state_update])
+//     }
+//     else{
+//         console.log('Weve had one yes, but:', state_update)    
+//     }    
+// },[state_update])
 
 
     return(

@@ -54,7 +54,7 @@ app.get('/items',(request, response)=>{
 app.post('/items',(request, response)=>{
     // console.log('TEST: ', request.body)
     const testData = request.body;
-    console.log(testData);
+    console.log("TESTDATA",testData)
     knex('items').insert(testData)
         .then(()=>{
             response.status(200).json({testData});

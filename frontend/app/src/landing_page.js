@@ -1,7 +1,7 @@
 import './landing_page.css';
 import React, { useEffect, useState} from 'react';
 
-const landing_page =()=>{
+const landing_page =(props)=>{
     const [user_name, set_username]=useState('');
     const [password, set_password]=useState('');
     const [state_update, set_state_update]=useState(0);
@@ -39,24 +39,48 @@ const landing_page =()=>{
     },[state_update])
     
     useEffect(()=>{
-        for (let itteration = 0; itteration < user_fetch.length; itteration++){
-            console.log(user_fetch[itteration].id)
-            if (user_name === user_fetch[itteration].user_name && password === user_fetch[itteration].user_password){
-             return   (
-                console.log('you may pass'),
-                set_username(''),
-                set_password(''),
-                set_state_update(0)
-                
-                )
+        if(user_fetch !== []){
+            for (let itteration = 0; itteration < user_fetch.length; itteration++){
+                console.log(user_fetch[itteration].id)
+                if (user_name === user_fetch[itteration].user_name && password === user_fetch[itteration].user_password){
+                    props.set_id(user_fetch[itteration])
+                return   (
+                    console.log('you may pass'),
+                    set_username(''),
+                    set_password(''),
+                    set_state_update(0),
+                    set_user_fetch(user_fetch[itteration])
+                    )
+                }
             }
+            
+            console.log('YOU SHALL NOT PASS!')
+            set_username('');
+            set_password('');
+            set_state_update(0);
         }
-        
-        console.log('YOU SHALL NOT PASS!')
-        set_username('');
-        set_password('');
-        set_state_update(0);
+        console.log('STATE CONTAINS: ', user_fetch)
     },[user_fetch])
+
+    const PAGE_LINK = (()=>{
+       
+        if(user_fetch.length === 1){
+            let page_link=`http://localhost:3000/user/${user_fetch.id}${user_fetch.user_name}${user_fetch.password}`
+            console.log(page_link)
+            return (
+                <>
+                    <a>NEWPAGE</a>
+                </>
+            )
+        }
+        else{
+            return(
+            <>
+            <a href= 'http://localhost:3000/user/id'>CLICKME</a>
+            </>
+            )
+        }
+    })
 
 
     return(
@@ -73,6 +97,7 @@ const landing_page =()=>{
             <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>              
             <button>Login</button>
         </form>
+        <PAGE_LINK />
     </main>
     <footer>
         <h2>Inventory Manager</h2>
