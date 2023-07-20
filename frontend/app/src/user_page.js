@@ -28,8 +28,8 @@ useEffect(()=>{
 
 useEffect(()=>{
     console.log('Me Lord has no data:', state_update)    
-    console.log('ITEMS LIST',items_list)
-    console.log('props passed', props.id)
+    // console.log('ITEMS LIST',items_list)
+    // console.log('props passed', props.id)
     if(props.id.id !== -1){
         if(new_item_name !== '' && new_item_flavor_text !== '' && new_item_quantity !==0){
             const post_body = {user_id: user_object.id,item_name: new_item_name, flavor_text: new_item_flavor_text, quantity: new_item_quantity}
@@ -37,7 +37,7 @@ useEffect(()=>{
             set_new_item_name('')
             set_new_flavor_text('')
             set_new_item_quantity(0)
-            set_state_update(0)
+         
         
         }
         else if(state_update === 0){
@@ -56,29 +56,37 @@ useEffect(()=>{
 },[state_update])
 
 useEffect(()=>{
+    set_state_update(0)
     console.log('But what about Second Breakfast?:', state_update)    
-    console.log(items_list)
-    console.log(props.id)
+    // console.log(items_list)
+    // console.log(props.id)
     if(props.id.id !== -1){
         if(state_update === 1){
-            if(items_list.length>1){
-            console.log('SUCCESSFULL LOGIN')
-            const temp_array =[]
-            for(let itteration= 0;itteration<items_list.length;itteration++){
-                if(props.id.id===items_list[itteration].user_id){
-                    temp_array.push(items_list[itteration])
+            if(items_list.length !== -1){
+                console.log('SUCCESSFULL LOGIN', items_list)
+                const temp_array =[]
+                if(items_list.length>0){
+                    for(let itteration= 0;itteration<items_list.length;itteration++){
+                        if(props.id.id===items_list[itteration].user_id){
+                            temp_array.push(items_list[itteration])
+                        }
+                    }
+                    console.log('TEMP_ARRAY', temp_array)
+                    set_user_items(temp_array)
                 }
-            }
-            set_user_items(temp_array)
-            set_items_fetch([])
-            set_state_update(-1)
-            console.log("USER ITEMS:",user_items)
             }}
         else{
+            console.log("USER ITEMS:",user_items)
             console.log('Weve had one yes, but:', state_update)    
         }}
     }    
-,[state_update, items_list])
+,[items_list])
+useEffect(()=>{
+    console.log("USER ITEMS:",user_items)
+    set_items_fetch([])
+    set_state_update(-1)
+}, [user_items])
+
 
 // let AutoRefresh((t)=>{
 //     setTimeout(location.reload(true), t)

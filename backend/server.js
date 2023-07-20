@@ -12,14 +12,21 @@ const port = 3001
 app.use(express.json());
 app.use(cors())
 
-
+//////// users//////////////////////
 app.get('/',(request, response)=>{
     response.send("Hello World")
 })
 app.get('/users',(request, response)=>{
-    knex('user').select('*').from('users')
+    knex.select('*').from('users')
         .then((user)=>{
             response.send(user);
+        })
+        .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+})
+app.get('/users/:id',(request, response)=>{
+    knex.select('*').from('users').where('id', request.params.id)
+        .then((item)=>{
+            response.send(item);
         })
         .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
@@ -34,14 +41,28 @@ app.post('/users',(request, response)=>{
     })
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
+app.put('/items/:id',(request, response)=>{
+    knex('items').where('id', request.params.id).update({
+        user_name: request.body.user_name,
+        flavor_text: request.body.flavor_text,
+        quantity: request.body.quantity
+    }).then(()=>{
+        knex.select().from('items')
+        .then((items)=>{
+            response.send(item)
+        })
+        .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+    })
+  
+})
 
-// app.put(('/users', (request, response)=>{
-//     knex.('users').where('id', request.params.id).update({})
-// }))
-// app.delete('/users',(request, reponse)=>{
-// knex.('users')
-// })
-
+app.delete('/users/:id', (request, response)=>{
+    knex('users').where('id', request.params.id)
+    .delete().then((items)=>{
+        response.send(items)
+    }).catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+})
+//////////////////////////items after this point//////////////////
 
 
 app.get('/items',(request, response)=>{
@@ -51,20 +72,20 @@ app.get('/items',(request, response)=>{
         })
         .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
-app.get('/items/id',(request, response)=>{
-    knex.select('*').from('items')
-        .then((items)=>{
-            // for(let i = 0; i<items.length; i++){
-            //     if(items[i].item_name === request){
-            //         response.send(items[i]);
-            //     }
-            // }
-            response.send(items);
+app.get('/items/:id',(request, response)=>{
+    knex.select('*').from('items').where('id', request.params.id)
+        .then((item)=>{
+            response.send(item);
         })
         .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
-
-
+app.get('/users_items/:user_id',(request, response)=>{
+    knex.select('*').from('items').where('user_id', request.params.user_id)
+        .then((item)=>{
+            response.send(item);
+        })
+        .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+})
 
 app.post('/items',(request, response)=>{
     // console.log('TEST: ', request.body)
@@ -73,6 +94,27 @@ app.post('/items',(request, response)=>{
     knex('items').insert(testData)
         .then(()=>{
             response.status(200).json({testData});
+    })
+    .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+})
+app.put('/items/:id',(request, response)=>{
+    knex('items').where('id', request.params.id).update({
+        user_name: request.body.user_name,
+        flavor_text: request.body.flavor_text,
+        quantity: request.body.quantity
+    }).then(()=>{
+        knex.select().from('items')
+        .then((items)=>{
+            response.send(item)
+        })
+        .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
+    })
+  
+})
+app.delete('/items/:id', (request, response)=>{
+    knex('items').where('id', request.params.id)
+    .delete().then((items)=>{
+        response.send(items)
     })
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
