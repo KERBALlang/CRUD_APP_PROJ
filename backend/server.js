@@ -41,11 +41,12 @@ app.post('/users',(request, response)=>{
     })
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
-app.put('/items/:id',(request, response)=>{
-    knex('items').where('id', request.params.id).update({
+app.put('/users/:id',(request, response)=>{
+    knex('users').where('id', request.params.id).update({
+        first_name: request.body.first_name,
+        last_name: request.body.last_name,
         user_name: request.body.user_name,
-        flavor_text: request.body.flavor_text,
-        quantity: request.body.quantity
+        user_password: request.body.user_password
     }).then(()=>{
         knex.select().from('items')
         .then((items)=>{
@@ -98,6 +99,8 @@ app.post('/items',(request, response)=>{
     .catch(error=>response.status(404).json({message: 'this should work MAYBE'}));
 })
 app.put('/items/:id',(request, response)=>{
+    const testData = request.body;
+    console.log("TESTDATA",testData)
     knex('items').where('id', request.params.id).update({
         user_name: request.body.user_name,
         flavor_text: request.body.flavor_text,
