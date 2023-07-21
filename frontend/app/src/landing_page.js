@@ -84,9 +84,15 @@ const landing_page =(props)=>{
             <input type="password" value={password} onChange={(element)=>{set_password(element.target.value)}} placeholder='Please input Your password'></input>
             {/* <Link to='/user'>             */}
                 <button>Login</button>
-                {/* <button onClick={()=>{navigate('./user')}} >User</button> */}
+            
             {/* </Link>   */}
         </form>
+        <button onClick={()=>{navigate('./user')}} >AFTER LOGIN SUBMITED CLICK HERE</button>
+        <li>
+            <p>Please input your username and password above. if when you go to the user page via the two navigation buttons labeled users, your content should be populated unless you have nothing in your inventory.</p>
+            <p>if you dont have an account please click the link to make one if you need your own inventory to track. when finished return here and login. please not that usernames must be unique and cannot be taken by another user.</p>
+            <p>If you just need to look at inventories and item please use the visiter button</p>
+        </li>
     </main>
     <footer>
         <h2>Inventory Manager</h2>
